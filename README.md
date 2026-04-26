@@ -44,3 +44,59 @@
 2.  Ensure your code is well-commented and the folder structure is clean (e.g., `/client` and `/server`).
 3.  Include a brief `README` on how to install dependencies and run the project locally.
 4. Make a pull request to this repository.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Express-React Assignment - My Assignment Branch
+A full-stack application built with Express.js (backend) and React.js (frontend) for the Express-React Assignment B29.
+Project Overview
+This project implements one of two assignment options:
+
+Option 1: The Movie Puzzler - A movie guessing game with difficulty levels and leaderboards
+
+
+Frontend: React.js
+Backend: Express.js
+Database: [MongoDB/PostgreSQL/JSON - specify as needed]
+Package Manager: npm
+
+
+
+
+Getting Started
+Prerequisites
+
+Node.js (v14+)
+
+ git clone https://github.com/uttkarshshrivastav/express-react-assignment-b29.git
+   cd express-react-assignment-b29
+   git checkout my-assignment
+
+
+
+for downloading dependencies 
+
+npm init -y 
+then 
+npm i express 
+npm i mongoose 
+npm i jsonwebtoken
+npm i dotenv
+
+
+
