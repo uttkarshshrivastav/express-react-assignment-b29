@@ -210,7 +210,6 @@ const getProfile = async (req, res) => {
   }
 }
 
-// function for updating user id left and have to be adden
 
 module.exports = {
   register,    

@@ -2,11 +2,6 @@ const { Mongoose } = require("mongoose");
 
 const PuzzleSchema = new mongoose.schema(
     {
-        puzzleId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-          required: true,
-    },
     description: {
       type: String,
       required: true,

@@ -38,7 +38,6 @@ const getLeaderboard = async (options = {}) => {
     throw new Error('Failed to fetch leaderboard')
   }
 }
-// function so that a user can cheeck his  \her rank make it here and exppoer (getUserRank)
 
 module.exports = {
   getLeaderboard,

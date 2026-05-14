@@ -22,12 +22,6 @@ const getLeaderboard = async (req, res) => {
 }
 
 
-// controller for getting the rank of  perticular user is left 
-
-
-
-
-
 module.exports = {
   getLeaderboard,
 }
