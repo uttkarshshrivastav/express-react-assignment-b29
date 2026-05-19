@@ -124,9 +124,9 @@ VITE_API_BASE_URL=http://localhost:5000
 ```
 
 ### Features
-1.Puzzle Fetching: * API to fetch a random puzzle.
-2.Ability to filter and fetch puzzles based on difficulty levels (e.g., Easy, Medium, Hard).
-3.User System: * Full user authentication (Signup/Login).
-4.Persistence: Track which puzzles a user has already solved to show their progress.
-5. A Hint Button that remains disabled/hidden until a user has made a certain number of failed attempts.
-6.Leaderboard: A page displaying user rankings based on the total number of puzzles solved.
+1.Puzzle Fetching: * API to fetch a random puzzle.                                                                                                                 
+2.Ability to filter and fetch puzzles based on difficulty levels (e.g., Easy, Medium, Hard).                                                                       
+3.User System: * Full user authentication (Signup/Login).                                                                                                          
+4.Persistence: Track which puzzles a user has already solved to show their progress.                                                                               
+5. A Hint Button that remains disabled/hidden until a user has made a certain number of failed attempts.                                                           
+6.Leaderboard: A page displaying user rankings based on the total number of puzzles solved.                                                                        
