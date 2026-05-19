@@ -13,7 +13,7 @@ const {
 
 const { auth } = require('../middleware/auth')
 
-router.get('/random', getRandomPuzzle)
+router.get('/random', auth, getRandomPuzzle)
 
 router.get('/difficulty/:level', getPuzzlesByDifficulty)
 

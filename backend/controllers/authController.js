@@ -5,7 +5,7 @@ const { User } = require('../models')
 
 
 const JWT_SECRET = process.env.JWT_SECRET 
-const JWT_EXPIRE = process.env.JWT_EXPIRE 
+const JWT_EXPIRE = process.env.JWT_EXPIRE || '7d'
 
 
 
@@ -16,15 +16,6 @@ const generateToken = (userId) => {
     { expiresIn: JWT_EXPIRE }       
   )
 }
-
-const generateToken = (userId) => {
-  return jwt.sign(
-    { userId: userId.toString()},  
-    JWT_SECRET,                     
-    { expiresIn: JWT_EXPIRE }       
-  )
-}
-
 
 const register = async (req, res) => {
   try {
@@ -185,7 +176,7 @@ const getProfile = async (req, res) => {
   try {
     const userId = req.user.userId
 
-    const user = await User.findById(userId).select('password')
+    const user = await User.findById(userId).select('-password')
 
     if (!user) {
       return res.status(404).json({

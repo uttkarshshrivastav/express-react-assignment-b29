@@ -1,6 +1,6 @@
 const Card = ({ children, className = "" }) => {
   return (
-    <div className={`bg-card-bg border border-card-border rounded-lg p-6 ${className}`}>
+    <div className={`mx-auto w-full bg-card-bg border border-white rounded-lg p-6 text-center ${className}`}>
       {children}
     </div>
   );

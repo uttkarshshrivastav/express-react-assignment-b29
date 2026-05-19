@@ -15,7 +15,7 @@ function App() {
       <Router>
         <div className="min-h-screen bg-primary-900">
           <Navbar />
-          <div className="container mx-auto px-4 py-8">
+          <main className="container mx-auto flex min-h-[calc(100vh-73px)] items-center justify-center px-4 py-8">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
@@ -33,7 +33,7 @@ function App() {
                 element={<ProtectedRoute element={<ProfilePage />} />}
               />
             </Routes>
-          </div>
+          </main>
         </div>
       </Router>
     </AuthProvider>

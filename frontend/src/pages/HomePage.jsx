@@ -12,7 +12,7 @@ const HomePage = () => {
     const fetchLeaderboard = async () => {
       try {
         const data = await getLeaderboard();
-        setLeaderboard(data.slice(0, 5));
+        setLeaderboard(data.data.leaderboard.slice(0, 5));
       } catch (err) {
         console.error("Failed to fetch leaderboard:", err);
       } finally {
@@ -23,7 +23,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-2xl mx-auto space-y-8">
       <Card>
         <h1 className="text-3xl font-bold text-white mb-4">Movie Puzzle Game</h1>
         <p className="text-text-secondary mb-6">
@@ -59,11 +59,11 @@ const HomePage = () => {
             {leaderboard.length > 0 ? (
               leaderboard.map((entry, index) => (
                 <div
-                  key={entry._id}
+                  key={entry.userId}
                   className="flex justify-between items-center p-3 border border-card-border rounded"
                 >
                   <span className="text-white">
-                    {index + 1}. {entry.username}
+                    {entry.rank}. {entry.username}
                   </span>
                   <span className="text-text-secondary">{entry.totalScore} points</span>
                 </div>

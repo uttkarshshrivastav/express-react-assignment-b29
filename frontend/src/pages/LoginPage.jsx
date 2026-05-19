@@ -19,8 +19,8 @@ const LoginPage = () => {
     setError("");
     try {
       const data = await login({ email, password });
-      authLogin(data.token);
-      navigate("/");
+      authLogin(data.data.token);
+      navigate("/puzzle");
     } catch (err) {
       setError(err.message || "Failed to login");
     } finally {

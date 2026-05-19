@@ -6,7 +6,7 @@ const getRandomPuzzle = async (req, res) => {
   try {
     const { difficulty = 'all' } = req.query
     
-    const userId = req.user.userId 
+    const userId = req.user?.userId || null
     
     const result = await puzzleService.getRandomPuzzle(difficulty, userId)
     
@@ -103,8 +103,7 @@ const getPuzzleById = async (req, res) => {
     const { id } = req.params;
     const userId = req.user?.userId || null
     
-    const Puzzle = require('../models/Puzzle')
-    const Attempt = require('../models/Attempt')
+    const { Puzzle, Attempt } = require('../models')
     
     const puzzle = await Puzzle.findById(id)
     

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { getRandomPuzzle, getPuzzleById, submitAnswer } from "../api/api";
+import { getRandomPuzzle, submitAnswer } from "../api/api";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
@@ -14,19 +14,23 @@ const PuzzlePage = () => {
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(true);
   const [attempts, setAttempts] = useState(0);
-  const [hintUsed, setHintUsed] = useState(false);
+  const [hintVisible, setHintVisible] = useState(false);
 
   useEffect(() => {
     const fetchPuzzle = async () => {
+      if (!token) return;
+
       try {
         const difficulty = searchParams.get("difficulty");
-        let data;
-        if (difficulty) {
-          data = await getRandomPuzzle();
-        } else {
-          data = await getRandomPuzzle();
-        }
-        setPuzzle(data);
+        const data = await getRandomPuzzle(token, difficulty);
+        const puzzleData = data.data.puzzle;
+
+        setPuzzle({
+          ...puzzleData,
+          _id: puzzleData.id,
+        });
+        setAttempts(data.data.attemptInfo?.attemptsCount || 0);
+        setHintVisible(false);
       } catch (err) {
         console.error("Failed to fetch puzzle:", err);
         setFeedback("Failed to load puzzle. Please try again.");
@@ -35,7 +39,7 @@ const PuzzlePage = () => {
       }
     };
     fetchPuzzle();
-  }, [searchParams]);
+  }, [searchParams, token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,9 +48,17 @@ const PuzzlePage = () => {
     try {
       setLoading(true);
       const result = await submitAnswer(token, puzzle._id, answer);
-      setFeedback(result.isCorrect ? "Correct! Well done!" : "Incorrect. Try again.");
-      setAttempts(result.attemptsCount);
-      if (result.isCorrect) {
+      const answerResult = result.data;
+      setFeedback(answerResult.isCorrect ? "Correct! Well done!" : "Incorrect. Try again.");
+      setAttempts(answerResult.attemptsCount);
+      if (answerResult.hint) {
+        setPuzzle((currentPuzzle) => ({
+          ...currentPuzzle,
+          hint: answerResult.hint,
+          hintUnlocked: answerResult.hintUnlocked,
+        }));
+      }
+      if (answerResult.isCorrect) {
         setTimeout(() => {
           window.location.reload();
         }, 2000);
@@ -59,7 +71,12 @@ const PuzzlePage = () => {
   };
 
   const handleHint = () => {
-    setHintUsed(true);
+    if (!puzzle?.hint) {
+      setFeedback("Hint unlocks after 3 attempts.");
+      return;
+    }
+
+    setHintVisible(true);
   };
 
   if (loading && !puzzle) {
@@ -110,10 +127,16 @@ const PuzzlePage = () => {
 
       <div className="mt-6 flex justify-between items-center">
         <p className="text-text-secondary text-sm">Attempts: {attempts}</p>
-        <Button onClick={handleHint} disabled={hintUsed}>
-          {hintUsed ? puzzle.hint : "Get Hint"}
+        <Button onClick={handleHint} disabled={hintVisible}>
+          {hintVisible ? "Hint Shown" : "Get Hint"}
         </Button>
       </div>
+
+      {hintVisible && puzzle.hint && (
+        <p className="mt-4 text-sm text-text-secondary">
+          Hint: <span className="text-white">{puzzle.hint}</span>
+        </p>
+      )}
     </Card>
   );
 };

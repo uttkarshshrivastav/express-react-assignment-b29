@@ -1,7 +1,7 @@
-const { Mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 
-const PuzzleSchema = new mongoose.schema(
-    {
+const puzzleSchema = new mongoose.Schema(
+  {
     description: {
       type: String,
       required: true,
