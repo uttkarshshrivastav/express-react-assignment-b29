@@ -73,15 +73,8 @@ export const updateProfile = async (token, userData) => {
   return handleResponse(response);
 };
 
-export const getRandomPuzzle = async (token, difficulty) => {
-  const query = difficulty ? `?difficulty=${encodeURIComponent(difficulty)}` : "";
-  const response = await fetch(`${API_BASE_URL}/puzzles/random${query}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const getRandomPuzzle = async () => {
+  const response = await fetch(`${API_BASE_URL}/puzzles/random`);
   return handleResponse(response);
 };
 

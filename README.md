@@ -1,102 +1,132 @@
-# Express-React Assignment
-## DEADLINE: 21st April EOD
+# MERN Stack Puzzle Application
 
----
+## File Structure
+```
+mernstackkassignment/
+│
+├── backend/
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── leaderboardController.js
+│   │   └── puzzleController.js
+│   ├── middleware/
+│   │   └── auth.js
+│   ├── models/
+│   │   ├── Attempt.js
+│   │   ├── index.js
+│   │   ├── puzzles.js
+│   │   └── user.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── leaderboard.js
+│   │   └── puzzle.js
+│   ├── services/
+│   │   ├── leaderboardService.js
+│   │   └── puzzleService.js
+│   ├── .env
+│   ├── .gitignore
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── seed.js
+│   └── server.js
+│
+├── frontend/
+│   ├── public/
+│   │   ├── favicon.svg
+│   │   └── icons.svg
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── api.js
+│   │   ├── components/
+│   │   │   ├── Button.jsx
+│   │   │   ├── Card.jsx
+│   │   │   ├── Loader.jsx
+│   │   │   └── Navbar.jsx
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx
+│   │   ├── pages/
+│   │   │   ├── HomePage.jsx
+│   │   │   ├── LeaderboardPage.jsx
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── ProfilePage.jsx
+│   │   │   ├── PuzzlePage.jsx
+│   │   │   └── RegisterPage.jsx
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── tailwind.config.js
+│   └── vite.config.js
+│
+├── .gitignore
+└── README.md
+```
 
-## Option 1: The Movie Puzzler
-**The Concept:** A mini-game where users are presented with extremely literal (and often cynical) descriptions of movies and must guess the correct title.
-> *Example:* "A billionaire beats up the mentally ill while wearing a rubber suit" → **The Dark Knight**
-
-### Required Features
-* **Puzzle Fetching:** * API to fetch a random puzzle.
-    * Ability to filter and fetch puzzles based on difficulty levels (e.g., Easy, Medium, Hard).
-* **User System:** * Full user authentication (Signup/Login).
-    * Persistence: Track which puzzles a user has already solved to show their progress.
-* **Frontend Logic:** * A **Hint Button** that remains disabled/hidden until a user has made a certain number of failed attempts.
-
-### Brownie Points
-* **Leaderboard/Analytics:** A page displaying user rankings based on the total number of puzzles solved.
-
----
-
-## Option 2: The "Wall of Shame"
-**The Concept:** A single-page, anonymous "shame wall" where developers can post snippets of code they are embarrassed by or that went horribly wrong.
-
-### Required Features
-* **Global Wall:** A shared space where all users see the same snippets in real-time or upon page refresh.
-* **Community Interaction:** Users can click on a specific snippet to view/leave remarks or comments.
-* **Anonymity & Ownership:** * No formal account system is required (keep it anonymous).
-    * **Logic:** Only the person who posted a specific comment should be able to delete it.
-* **Frontend UI:** * A "single large screen" layout where code snippets appear as distinct, interactable components (like cards or sticky notes).
-
-### Brownie Points
-* **Profile History:** A local profile screen where a user can view a history of all snippets and comments they have posted from their browser.
-
----
-
-## Tech Stack Requirements
-* **Frontend:** React.js
-* **Backend:** Express.js
-* **Database:** Your choice (MongoDB, PostgreSQL, or even a local JSON file for persistence).
-
-## Submission Guidelines
-1.  Initialize a Git repository.
-2.  Ensure your code is well-commented and the folder structure is clean (e.g., `/client` and `/server`).
-3.  Include a brief `README` on how to install dependencies and run the project locally.
-4. Make a pull request to this repository.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Express-React Assignment - My Assignment Branch
-A full-stack application built with Express.js (backend) and React.js (frontend) for the Express-React Assignment B29.
-Project Overview
-This project implements one of two assignment options:
-
-Option 1: The Movie Puzzler - A movie guessing game with difficulty levels and leaderboards
-
-
-Frontend: React.js
-Backend: Express.js
-Database: [MongoDB/PostgreSQL/JSON - specify as needed]
-Package Manager: npm
+## Running locally
 
 
+### Clone Repo
+1. git clone https://github.com/uttkarshshrivastav/express-react-assignment-b29
+
+ 
 
 
-Getting Started
-Prerequisites
+### Backend Setup
+Ensure MongoDB is running before starting the backend server.
+1. Navigate to the `backend` directory:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the backend server:
+   ```bash
+   npm run dev or node server.js
+   ```
 
-Node.js (v14+)
+### Frontend Setup
+Now in new terminal window
+1. Navigate to the `frontend` directory:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the frontend development server:
+   ```bash
+   npm run dev
+   ```
 
- git clone https://github.com/uttkarshshrivastav/express-react-assignment-b29.git
-   cd express-react-assignment-b29
-   git checkout my-assignment
+## Environment Variables
 
+### Backend
+Create a `.env` file in the `backend` directory and add the following:
+```env
+MONGODB_URI=<your_mongodb_uri>
+JWT_SECRET=<your_jwt_secret>
+```
 
+### Frontend
+Create a `.env` file in the `frontend` directory and add the following:
+```env
+VITE_API_BASE_URL=http://localhost:5000
+```
 
-for downloading dependencies 
-
-npm init -y 
-then 
-npm i express 
-npm i mongoose 
-npm i jsonwebtoken
-npm i dotenv
-
-
-
+### Features
+1.Puzzle Fetching: * API to fetch a random puzzle.
+2.Ability to filter and fetch puzzles based on difficulty levels (e.g., Easy, Medium, Hard).
+3.User System: * Full user authentication (Signup/Login).
+4.Persistence: Track which puzzles a user has already solved to show their progress.
+5. A Hint Button that remains disabled/hidden until a user has made a certain number of failed attempts.
+6.Leaderboard: A page displaying user rankings based on the total number of puzzles solved.

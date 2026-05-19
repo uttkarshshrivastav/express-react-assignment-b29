@@ -91,7 +91,7 @@ const PuzzlePage = () => {
     <Card className="max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold text-white mb-4">Movie Puzzle</h1>
 
-      {/* Nested puzzle description box */}
+      
       <div
         className="p-4 mb-6 rounded border border-card-border"
         style={{ backgroundColor: "#0f0f0f" }}
