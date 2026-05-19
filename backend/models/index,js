@@ -1,9 +1,0 @@
-const User = require('./User')
-const Puzzle = require('./Puzzle')
-const Attempt = require('./Attempt')
-
-module.exports = {
-  User,
-  Puzzle,
-  Attempt,
-}
